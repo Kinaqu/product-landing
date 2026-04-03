@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { LampScene } from "@/components/luma/lamp-scene";
 import { LightRays } from "@/components/luma/light-rays";
 import { Reveal } from "@/components/luma/reveal";
 import { SectionHeading } from "@/components/luma/section-heading";
@@ -125,11 +125,19 @@ export default function Home() {
             <Reveal className="hero__visual-frame" delay={180}>
               <div className="hero__visual">
                 <LightRays />
-                <LampScene
-                  variant="hero"
-                  tone="warm"
-                  label="A sculptural Luma Desk lamp above a desk plane with a soft warm glow."
-                />
+                <div className="hero__product-shot">
+                  <div className="hero__product-aura" />
+                  <div className="hero__product-card">
+                    <Image
+                      src="/luma-lamp-reference.jpg"
+                      alt="Minimal black desk lamp with a softly glowing bulb on a pale interior surface."
+                      fill
+                      priority
+                      sizes="(max-width: 820px) 90vw, 42vw"
+                      className="hero__product-image"
+                    />
+                  </div>
+                </div>
                 <div className="hero__specs">
                   <div>
                     <span className="hero__spec-label">Adaptive light</span>
@@ -249,11 +257,18 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className="feature-visual feature-visual--form">
-                  <LampScene
-                    variant="detail"
-                    tone="neutral"
-                    label="Luma Desk lamp detail view with a neutral architectural glow."
-                  />
+                  <div className="photo-panel photo-panel--detail">
+                    <Image
+                      src="/luma-lamp-reference.jpg"
+                      alt="Close product reference of a refined desk lamp with dark metal frame and glowing bulb."
+                      fill
+                      sizes="(max-width: 820px) 90vw, 36vw"
+                      className="photo-panel__image photo-panel__image--detail"
+                    />
+                  </div>
+                  <div className="photo-panel__caption">
+                    Graphite frame, weighted stone base, quiet silhouette.
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -273,15 +288,18 @@ export default function Home() {
                     measured.
                   </p>
                 </div>
-                <div className="workspace-scene" aria-hidden="true">
-                  <LampScene
-                    variant="mini"
-                    tone="warm"
-                    label="Decorative workspace scene."
+                <div className="workspace-photo">
+                  <Image
+                    src="/luma-workspace.jpg"
+                    alt="Warm interior workspace with wooden desk, chair, and a desk lamp creating a calm atmosphere."
+                    fill
+                    sizes="(max-width: 1120px) 90vw, 40vw"
+                    className="workspace-photo__image"
                   />
-                  <div className="workspace-scene__notebook" />
-                  <div className="workspace-scene__speaker" />
-                  <div className="workspace-scene__tray" />
+                  <div className="workspace-photo__overlay" />
+                  <div className="workspace-photo__label">
+                    Calm interior composition
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -368,10 +386,12 @@ export default function Home() {
             <Reveal delay={140}>
               <div className="craftsmanship__visuals">
                 <div className="craftsmanship__detail craftsmanship__detail--lamp">
-                  <LampScene
-                    variant="detail"
-                    tone="evening"
-                    label="Close detail scene of the Luma Desk lamp in a warmer evening tone."
+                  <Image
+                    src="/luma-lamp-reference.jpg"
+                    alt="Evening-toned lamp reference showing dark metal stem and softly illuminated bulb."
+                    fill
+                    sizes="(max-width: 820px) 90vw, 30vw"
+                    className="craftsmanship__photo craftsmanship__photo--lamp"
                   />
                 </div>
                 <div className="craftsmanship__detail craftsmanship__detail--surface" />
@@ -454,11 +474,14 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="reserve__visual">
-                  <LampScene
-                    variant="mini"
-                    tone="warm"
-                    label="Final call-to-action scene for the Luma Desk lamp."
+                  <Image
+                    src="/luma-lamp-reference.jpg"
+                    alt="Minimal Luma Desk-style lamp visual for the final call to action."
+                    fill
+                    sizes="(max-width: 820px) 90vw, 24vw"
+                    className="reserve__photo"
                   />
+                  <div className="reserve__photo-glow" />
                 </div>
               </div>
             </Reveal>
