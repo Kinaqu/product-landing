@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "Luma Desk",
   description:
     "A premium product landing page for Luma Desk, a smart lamp designed for focused work, calm interiors, and intentional atmosphere.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
