@@ -4,30 +4,50 @@ import { LightRays } from "@/components/luma/light-rays";
 import { Reveal } from "@/components/luma/reveal";
 import { SectionHeading } from "@/components/luma/section-heading";
 import { SpotlightPanel } from "@/components/luma/spotlight-panel";
+import { WaitlistForm } from "@/components/luma/waitlist-form";
+
+const trustPoints = [
+  {
+    label: "Launch price",
+    value: "From $268",
+  },
+  {
+    label: "Brightness",
+    value: "Up to 900 lumens",
+  },
+  {
+    label: "Color range",
+    value: "2700K to 5000K",
+  },
+  {
+    label: "Launch window",
+    value: "Ships October 2026",
+  },
+];
 
 const modes = [
   {
     name: "Deep Focus",
     descriptor: "4300K balanced light",
-    copy: "Crisp illumination keeps contrast high and the desk quietly alert through long stretches of concentrated work.",
+    copy: "Bright, even light keeps paper, keyboard legends, and contrast clear during long work blocks.",
     tone: "mode-card--focus",
   },
   {
     name: "Soft Evening",
     descriptor: "2900K ambient glow",
-    copy: "The room settles. Edges soften. Notes, books, and ceramic surfaces hold a warmer, calmer presence.",
+    copy: "A warmer setting that lowers glare and makes the desk feel settled at the end of the day.",
     tone: "mode-card--evening",
   },
   {
     name: "Creative Session",
     descriptor: "Adaptive temperature shift",
-    copy: "Light follows the rhythm of sketching, editing, arranging, and stepping back without feeling clinical.",
+    copy: "A middle ground for sketching, editing, and rearranging without making the room feel clinical.",
     tone: "mode-card--creative",
   },
   {
     name: "Reading Light",
-    descriptor: "Low glare task beam",
-    copy: "A close, comfortable pool of light for pages, proofs, and late drafts when the rest of the room stays quiet.",
+    descriptor: "Low-glare task beam",
+    copy: "A tighter pool of light for proofs, notebooks, and late reading when the rest of the room stays dim.",
     tone: "mode-card--reading",
   },
 ];
@@ -35,31 +55,64 @@ const modes = [
 const testimonials = [
   {
     quote:
-      "Luma Desk feels more like a beautifully resolved object than a piece of office equipment. It changes the atmosphere before it changes the brightness.",
+      "I stopped reaching for a second lamp. Luma gives me enough brightness for paperwork without flattening the whole room.",
     name: "Mina Keller",
-    role: "Interior stylist, Copenhagen",
+    role: "Interior stylist",
   },
   {
     quote:
-      "The touch response is immediate and discreet. There is no visual noise, no clutter, just the right light landing exactly where I need it.",
+      "The touch surface is the part I notice most. Two days in, I stopped thinking about controls altogether.",
     name: "Arun Patel",
-    role: "Product designer, London",
+    role: "Product designer",
   },
   {
     quote:
-      "Most desk lamps solve function. This one solves mood. It makes a workspace feel finished.",
+      "It reads like a considered object even when it is off. That matters on a desk you see all day.",
     name: "Nora Villiers",
-    role: "Architect, Montreal",
+    role: "Architect",
   },
 ];
 
 const specifications = [
-  ["Light balance", "2700K to 5000K with ambient memory"],
-  ["Output", "Up to 900 lumens with low-glare diffuser"],
-  ["Controls", "Capacitive touch dimming and mode recall"],
-  ["Awareness", "Presence sensing for gentle wake and rest"],
+  ["Brightness", "Up to 900 lumens with a low-glare diffuser"],
+  ["Color temperature", "2700K to 5000K with warm memory recall"],
+  ["Scenes", "Four presets plus press-and-hold dimming"],
+  ["Automation", "Presence sensing for soft wake and fade-down"],
   ["Materials", "Machined aluminum, satin diffuser, braided cord"],
-  ["Footprint", "16 cm base, 44 cm height, quietly weighted"],
+  ["Footprint", "16 cm base, 44 cm height, weighted steel core"],
+];
+
+const faqs = [
+  {
+    question: "What does the waitlist reserve?",
+    answer:
+      "It holds your place for the first launch batch and gives you the launch email before public availability.",
+  },
+  {
+    question: "How is Luma powered?",
+    answer:
+      "The launch model uses a braided power cable and an internal driver tuned for desk use and low visual noise.",
+  },
+  {
+    question: "Can I change brightness and warmth manually?",
+    answer:
+      "Yes. Tap to switch scenes, then press and hold to fine-tune brightness without opening an app.",
+  },
+  {
+    question: "Will it work in a bedroom or only at a desk?",
+    answer:
+      "It is tuned for desks first, but the softer scenes are designed to feel comfortable in quieter rooms too.",
+  },
+  {
+    question: "What finishes are in the launch edition?",
+    answer:
+      "Matte stone, graphite, and champagne. All three use the same satin diffuser and weighted base construction.",
+  },
+  {
+    question: "Is there a warranty?",
+    answer:
+      "The launch plan includes a two-year limited warranty and replacement support for manufacturing defects.",
+  },
 ];
 
 export default function Home() {
@@ -72,13 +125,14 @@ export default function Home() {
             <span className="brand-mark__text">Luma Desk</span>
           </Link>
           <nav className="site-nav" aria-label="Primary">
-            <a href="#philosophy">Philosophy</a>
-            <a href="#story">Story</a>
-            <a href="#modes">Modes</a>
-            <a href="#details">Details</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#specs">Specs</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
           </nav>
-          <a className="button button--ghost" href="#reserve">
-            Reserve
+          <a className="button button--ghost" href="#waitlist">
+            Join waitlist
           </a>
         </div>
       </header>
@@ -88,35 +142,52 @@ export default function Home() {
           <div className="container hero__grid">
             <div className="hero__content">
               <Reveal>
-                <span className="eyebrow">Designed for calm work</span>
+                <span className="eyebrow">Smart desk lamp</span>
               </Reveal>
               <Reveal delay={120}>
                 <h1 className="hero__title">
-                  Light, composed for the hours that matter.
+                  Smart light that keeps the desk calm and focused.
                 </h1>
               </Reveal>
               <Reveal delay={220}>
                 <p className="hero__copy">
-                  Luma Desk brings adaptive illumination, tactile control, and a
-                  sculptural silhouette to the rituals of focused work and quiet
-                  rooms.
+                  Luma Desk combines low-glare brightness, touch dimming, saved
+                  scenes, and a furniture-grade silhouette in one lamp built for
+                  everyday work.
                 </p>
               </Reveal>
               <Reveal delay={320}>
                 <div className="hero__actions">
-                  <a className="button" href="#reserve">
-                    Reserve Luma Desk
+                  <a className="button" href="#waitlist">
+                    Join the waitlist
                   </a>
-                  <a className="text-link" href="#details">
-                    View the finishes
+                  <a className="text-link" href="#benefits">
+                    See why it works
                   </a>
                 </div>
               </Reveal>
-              <Reveal delay={420}>
+              <Reveal delay={400}>
+                <div className="hero__proof">
+                  <div>
+                    <strong>900 lm</strong>
+                    <span>Low-glare output</span>
+                  </div>
+                  <div>
+                    <strong>4 scenes</strong>
+                    <span>Tap and hold control</span>
+                  </div>
+                  <div>
+                    <strong>2-year</strong>
+                    <span>Launch warranty</span>
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal delay={460}>
                 <div className="hero__note">
-                  <p>Autumn release</p>
+                  <p>Launch edition</p>
                   <span>
-                    Matte stone, graphite, and champagne with a warm memory glow.
+                    Three finishes, October 2026 ship window, early-access
+                    pricing for the first batch.
                   </span>
                 </div>
               </Reveal>
@@ -141,15 +212,15 @@ export default function Home() {
                 <div className="hero__specs">
                   <div>
                     <span className="hero__spec-label">Adaptive light</span>
-                    <strong>2700K to 5000K</strong>
+                    <strong>From warm evenings to bright desk work</strong>
                   </div>
                   <div>
-                    <span className="hero__spec-label">Touch response</span>
-                    <strong>Dim, shift, recall</strong>
+                    <span className="hero__spec-label">Touch control</span>
+                    <strong>Tap scenes, hold to dim, no app required</strong>
                   </div>
                   <div>
-                    <span className="hero__spec-label">Presence</span>
-                    <strong>Motion-aware calm</strong>
+                    <span className="hero__spec-label">Presence sensing</span>
+                    <strong>Wakes softly when you return</strong>
                   </div>
                 </div>
               </div>
@@ -157,42 +228,24 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="philosophy" className="section philosophy">
-          <div className="container">
-            <Reveal>
-              <div className="philosophy__frame">
-                <div className="philosophy__intro">
-                  <span className="eyebrow">Object philosophy</span>
-                  <p className="philosophy__quote">
-                    A desk object first. Smart second.
-                  </p>
-                </div>
-                <div className="philosophy__body">
-                  <p>
-                    Luma Desk was shaped around a simple idea: the best tools for
-                    concentrated work should settle into the room with dignity.
-                    Nothing blinking. Nothing overstated. Just precise light,
-                    intuitive touch, and a silhouette that belongs beside paper,
-                    stone, aluminum, walnut, and calm surfaces.
-                  </p>
-                  <p>
-                    It is made for people who think carefully about the mood of a
-                    workspace, because focus is rarely only functional. It is
-                    visual. Spatial. Atmospheric.
-                  </p>
-                </div>
+        <section className="trust-strip">
+          <div className="container trust-strip__inner">
+            {trustPoints.map((point) => (
+              <div key={point.label} className="trust-point">
+                <span>{point.label}</span>
+                <strong>{point.value}</strong>
               </div>
-            </Reveal>
+            ))}
           </div>
         </section>
 
-        <section id="story" className="section story">
+        <section id="benefits" className="section story">
           <div className="container">
             <Reveal>
               <SectionHeading
-                eyebrow="Story-led features"
-                title="Each detail is there to shape the feeling of the desk."
-                copy="Rather than stacking features into a grid, Luma Desk reveals itself through quiet moments of use: morning clarity, tactile dimming, a softer evening room, and a form that keeps visual rhythm intact."
+                eyebrow="Benefits"
+                title="A lamp that solves glare, control, and desk clutter at once."
+                copy="Every part of Luma is there to make the desk easier to work at and easier to look at."
               />
             </Reveal>
 
@@ -200,16 +253,16 @@ export default function Home() {
               <Reveal className="feature-block">
                 <div className="feature-block__copy">
                   <span className="feature-block__index">01</span>
-                  <h3>Morning clarity. Evening softness.</h3>
+                  <h3>See paper clearly from morning to midnight.</h3>
                   <p>
-                    Adaptive balance shifts from cooler precision to warmer
-                    ambience as the day changes, so the lamp feels aligned with
-                    the room instead of fixed against it.
+                    Luma shifts from crisp daytime output to softer evening
+                    light without forcing you to choose between clarity and
+                    comfort.
                   </p>
                   <ul className="feature-list">
-                    <li>Ambient memory remembers the tone you leave it on.</li>
-                    <li>Presence sensing wakes the light softly as you return.</li>
-                    <li>High color fidelity keeps materials and paper honest.</li>
+                    <li>Balanced 2700K to 5000K color range.</li>
+                    <li>Low-glare diffuser keeps contrast comfortable.</li>
+                    <li>Warm memory recalls your last preferred tone.</li>
                   </ul>
                 </div>
                 <div className="feature-visual feature-visual--gradient">
@@ -222,16 +275,15 @@ export default function Home() {
               <Reveal className="feature-block feature-block--reverse" delay={120}>
                 <div className="feature-block__copy">
                   <span className="feature-block__index">02</span>
-                  <h3>Touch becomes part of the ritual.</h3>
+                  <h3>Change the light without breaking your flow.</h3>
                   <p>
-                    Dimness, warmth, and mode changes happen under the hand with a
-                    light press. No menu language. No instructional overhead. Just
-                    an interaction that feels natural after the first evening.
+                    Tap for scenes. Hold for dimming. The control surface is
+                    direct enough to learn once and forget.
                   </p>
                   <ul className="feature-list">
-                    <li>Capacitive edge with a muted haptic confirmation.</li>
-                    <li>Quick hold for brightness, tap for scene changes.</li>
-                    <li>Night mode descends gradually instead of snapping dark.</li>
+                    <li>Capacitive edge with muted haptic feedback.</li>
+                    <li>Fast scene changes with no app dependency.</li>
+                    <li>Gradual night fade instead of abrupt shutoff.</li>
                   </ul>
                 </div>
                 <div className="feature-visual feature-visual--touch">
@@ -244,30 +296,29 @@ export default function Home() {
               <Reveal className="feature-block" delay={180}>
                 <div className="feature-block__copy">
                   <span className="feature-block__index">03</span>
-                  <h3>Quiet geometry, sculpted to stay.</h3>
+                  <h3>Keep the desk looking resolved when the lamp is off.</h3>
                   <p>
-                    The form is reduced to the essentials: a weighted base, a
-                    balanced arm, a satin diffuser, and a profile that reads like
-                    furniture hardware rather than gadgetry.
+                    The form stays quiet on the desk: weighted, stable, and
+                    finished like a permanent object rather than a gadget.
                   </p>
                   <ul className="feature-list">
-                    <li>Machined aluminum with a low-sheen bead-blasted finish.</li>
-                    <li>Braided cord and concealed joints keep the line clean.</li>
-                    <li>Weighted base sits confidently on compact desks.</li>
+                    <li>Machined aluminum with a bead-blasted finish.</li>
+                    <li>Weighted base for smaller desks and shelves.</li>
+                    <li>Braided cable and concealed joints reduce clutter.</li>
                   </ul>
                 </div>
                 <div className="feature-visual feature-visual--form">
                   <div className="photo-panel photo-panel--detail">
                     <Image
                       src="/luma-lamp-reference.jpg"
-                      alt="Close product reference of a refined desk lamp with dark metal frame and glowing bulb."
+                      alt="Close view of the lamp showing the dark metal frame and softly glowing bulb."
                       fill
                       sizes="(max-width: 820px) 90vw, 36vw"
                       className="photo-panel__image photo-panel__image--detail"
                     />
                   </div>
                   <div className="photo-panel__caption">
-                    Graphite frame, weighted stone base, quiet silhouette.
+                    Weighted base, satin diffuser, and restrained geometry.
                   </div>
                 </div>
               </Reveal>
@@ -275,66 +326,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section lifestyle">
-          <div className="container lifestyle__grid">
-            <Reveal>
-              <div className="lifestyle__card lifestyle__card--large">
-                <div className="lifestyle__copy">
-                  <span className="eyebrow">Styled for the room</span>
-                  <h3>Made to live with notebooks, stone trays, shelves, and quiet speakers.</h3>
-                  <p>
-                    Luma Desk is meant to belong in carefully composed workspaces,
-                    not dominate them. The light stays present. The object stays
-                    measured.
-                  </p>
-                </div>
-                <div className="workspace-photo">
-                  <Image
-                    src="/luma-workspace.jpg"
-                    alt="Warm interior workspace with wooden desk, chair, and a desk lamp creating a calm atmosphere."
-                    fill
-                    sizes="(max-width: 1120px) 90vw, 40vw"
-                    className="workspace-photo__image"
-                  />
-                  <div className="workspace-photo__overlay" />
-                  <div className="workspace-photo__label">
-                    Calm interior composition
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div className="lifestyle__card lifestyle__card--stack">
-                <div className="material-swatch material-swatch--stone" />
-                <div className="material-swatch material-swatch--graphite" />
-                <div className="material-swatch material-swatch--champagne" />
-                <p>
-                  Three finishes, one palette: architectural neutrals with a warm
-                  metallic note.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={220}>
-              <div className="lifestyle__card lifestyle__card--quote">
-                <p>
-                  “The lamp settles the whole desk. The space feels quieter before
-                  the work even begins.”
-                </p>
-                <span>Studio resident note</span>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        <section id="modes" className="section modes">
+        <section id="how-it-works" className="section modes">
           <div className="container modes__grid">
             <Reveal>
               <SectionHeading
-                eyebrow="Scenes"
-                title="Modes for different hours, not different menus."
-                copy="The presets are treated like moods rather than software states. Each one adjusts color balance and brightness with a distinct spatial feeling."
+                eyebrow="How it works"
+                title="Four saved scenes and one touch surface."
+                copy="Choose a starting scene with one tap, then fine-tune brightness as the room changes around you."
               />
             </Reveal>
             <div className="modes__cards">
@@ -354,30 +352,29 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section craftsmanship">
+        <section id="specs" className="section craftsmanship">
           <div className="container craftsmanship__frame">
             <Reveal>
               <div className="craftsmanship__copy">
-                <span className="eyebrow eyebrow--light">Craftsmanship</span>
-                <h2>Refined where the hand meets it. Restrained where the eye rests.</h2>
+                <span className="eyebrow eyebrow--light">Built to last</span>
+                <h2>Daily-use hardware with the manners of a furniture piece.</h2>
                 <p>
-                  Every visible surface is there for a reason. The stem is softly
-                  blasted for a dry, architectural finish. The diffuser is satin,
-                  not glossy. The joints disappear into the profile. Even the cord
-                  is chosen to feel considered, not merely supplied.
+                  Luma is designed to stay visible on the desk all day: durable
+                  materials, softer optical diffusion, and a base that feels
+                  stable without looking heavy.
                 </p>
                 <div className="craftsmanship__details">
                   <div>
                     <strong>Bead-blasted aluminum</strong>
-                    <span>Low-sheen surface that reads quietly in daylight.</span>
+                    <span>Dry, low-sheen finish that avoids the gadget look.</span>
                   </div>
                   <div>
                     <strong>Satin optical diffuser</strong>
-                    <span>Soft, even spread with controlled glare at the desk.</span>
+                    <span>Even spread with controlled glare on paper and screens.</span>
                   </div>
                   <div>
                     <strong>Weighted steel core</strong>
-                    <span>Stability without a visually heavy base.</span>
+                    <span>Confident stability on compact desks and side tables.</span>
                   </div>
                 </div>
               </div>
@@ -387,8 +384,8 @@ export default function Home() {
               <div className="craftsmanship__visuals">
                 <div className="craftsmanship__detail craftsmanship__detail--lamp">
                   <Image
-                    src="/luma-lamp-reference.jpg"
-                    alt="Evening-toned lamp reference showing dark metal stem and softly illuminated bulb."
+                    src="/luma-workspace.jpg"
+                    alt="Workspace scene showing the lamp inside a warm, quiet interior."
                     fill
                     sizes="(max-width: 820px) 90vw, 30vw"
                     className="craftsmanship__photo craftsmanship__photo--lamp"
@@ -401,13 +398,39 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section testimonials">
+        <section className="section details">
+          <div className="container details__grid">
+            <Reveal>
+              <div className="details__intro">
+                <span className="eyebrow">Specs</span>
+                <h2>Key details, fast to scan.</h2>
+                <p>
+                  Enough information to understand the product before you join
+                  the list.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="spec-list">
+              {specifications.map(([label, value], index) => (
+                <Reveal key={label} delay={index * 70}>
+                  <div className="spec-item">
+                    <span>{label}</span>
+                    <strong>{value}</strong>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="reviews" className="section testimonials">
           <div className="container">
             <Reveal>
               <SectionHeading
-                eyebrow="Selected voices"
-                title="Understated praise from people who notice a room."
-                copy="Writers, designers, architects, and remote workers all describe Luma Desk in the same terms: calmer, warmer, and more resolved."
+                eyebrow="Reviews"
+                title="People notice three things right away: less glare, faster control, calmer rooms."
+                copy="The strongest feedback is practical. Better task light, less visual noise, and a lamp that still looks good when idle."
                 align="center"
               />
             </Reveal>
@@ -427,56 +450,51 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="details" className="section details">
-          <div className="container details__grid">
+        <section id="faq" className="section faq">
+          <div className="container faq__grid">
             <Reveal>
-              <div className="details__intro">
-                <span className="eyebrow">Product details</span>
-                <h2>Everything essential, presented with restraint.</h2>
-                <p>
-                  Enough detail to understand the object. Nothing that turns the
-                  page into a datasheet.
-                </p>
-              </div>
+              <SectionHeading
+                eyebrow="FAQ"
+                title="Answer the obvious questions before asking for the click."
+                copy="Shipping, controls, finishes, and warranty are the main blockers. The answers live here."
+              />
             </Reveal>
 
-            <div className="spec-list">
-              {specifications.map(([label, value], index) => (
-                <Reveal key={label} delay={index * 70}>
-                  <div className="spec-item">
-                    <span>{label}</span>
-                    <strong>{value}</strong>
-                  </div>
+            <div className="faq-list">
+              {faqs.map((item, index) => (
+                <Reveal key={item.question} delay={index * 70}>
+                  <details className="faq-item">
+                    <summary>{item.question}</summary>
+                    <p>{item.answer}</p>
+                  </details>
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="reserve" className="section reserve">
+        <section id="waitlist" className="section reserve">
           <div className="container">
             <Reveal>
               <div className="reserve__frame">
                 <div className="reserve__copy">
-                  <span className="eyebrow">Bring the room together</span>
-                  <h2>A calmer light for the desk you keep returning to.</h2>
+                  <span className="eyebrow">Waitlist</span>
+                  <h2>Get launch access before the first batch opens.</h2>
                   <p>
-                    Reserve Luma Desk from $268. First release ships in October
-                    with matte stone, graphite, and champagne finishes.
+                    Join the list for launch pricing, finish availability, and
+                    the October 2026 shipping update.
                   </p>
-                  <div className="hero__actions">
-                    <a className="button" href="mailto:hello@lumadesk.example">
-                      Reserve yours
-                    </a>
-                    <a className="text-link" href="#modes">
-                      Explore the scenes
-                    </a>
-                  </div>
+                  <WaitlistForm />
+                  <ul className="reserve__meta">
+                    <li>Early-access pricing from $268</li>
+                    <li>Three launch finishes</li>
+                    <li>Two-year limited warranty</li>
+                  </ul>
                 </div>
                 <div className="reserve__visual">
                   <Image
-                    src="/luma-lamp-reference.jpg"
-                    alt="Minimal Luma Desk-style lamp visual for the final call to action."
+                    src="/luma-workspace.jpg"
+                    alt="Warm workspace scene with the lamp illuminating a desk."
                     fill
                     sizes="(max-width: 820px) 90vw, 24vw"
                     className="reserve__photo"
@@ -493,9 +511,9 @@ export default function Home() {
         <div className="container site-footer__inner">
           <div>
             <strong>Luma Desk</strong>
-            <p>Smart light for focused work, calm spaces, and modern interiors.</p>
+            <p>Smart desk light for focused work, calmer rooms, and cleaner surfaces.</p>
           </div>
-          <p>Launch edition for Autumn 2026</p>
+          <p>Launch edition, October 2026</p>
         </div>
       </footer>
     </div>
